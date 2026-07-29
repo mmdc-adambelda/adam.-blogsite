@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="80" viewBox="0 0 360 80">
+  <!-- TEMPORARY LOGO — replace this file with your final logo (same filename) -->
+  <path d="M8 58 C 40 40, 70 28, 104 18" fill="none" stroke="#C99A3D" stroke-width="2.5" stroke-dasharray="4 7" stroke-linecap="round" opacity="0.8"/>
+  <path d="M96 22 L124 8 L112 34 L103 29 L95 36 L94 27 Z" fill="#D72638"/>
+  <text x="140" y="50" font-family="Georgia, serif" font-size="30" font-weight="bold" letter-spacing="6" fill="#F7F3EE">ADAM BELDA</text>
+</svg>
