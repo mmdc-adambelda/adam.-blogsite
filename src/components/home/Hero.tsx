@@ -20,8 +20,10 @@ const labels = [
 ];
 
 /**
- * Full-screen cinematic hero: layered island silhouettes, animated waves,
- * swaying palms, a plane on a glowing flight path, and cursor parallax.
+ * Full-screen cinematic hero: a colorful tropical-sunset sky, layered island
+ * silhouettes, animated turquoise waves, swaying palms, a glowing sun, and a
+ * plane on a flight path, with cursor parallax. Unlike the rest of the site
+ * (dark red/black), this banner leans fully into tropical color.
  * Background image slot: /public/images/home/adambelda-tropical-hero-placeholder.webp (1920x1080)
  */
 export default function Hero() {
@@ -49,116 +51,142 @@ export default function Hero() {
       className="relative flex min-h-[92svh] items-center overflow-hidden bg-night"
       aria-label="Introduction"
     >
-      {/* Sunset glow + hero image slot */}
+      {/* Optional real-photo slot (currently empty placeholder path) */}
       <div
-        className="absolute inset-0 bg-[url('/images/home/adambelda-tropical-hero-placeholder.webp')] bg-cover bg-center opacity-40"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute inset-0 bg-[radial-gradient(120%_85%_at_50%_100%,rgba(110,13,24,0.75)_0%,rgba(164,22,26,0.35)_32%,rgba(5,5,5,0.35)_62%,#050505_100%)]"
+        className="absolute inset-0 bg-[url('/images/home/adambelda-tropical-hero-placeholder.webp')] bg-cover bg-center opacity-30"
         aria-hidden="true"
       />
 
-      {/* Drifting clouds */}
-      {!reduce && (
-        <>
-          <div className="absolute left-0 top-[14%] h-10 w-48 animate-drift rounded-full bg-cream/[0.05] blur-2xl" aria-hidden="true" />
-          <div className="absolute left-0 top-[26%] h-8 w-64 animate-drift rounded-full bg-cream/[0.04] blur-2xl [animation-delay:-30s]" aria-hidden="true" />
-        </>
-      )}
+      {/* Tropical dusk-to-sunset sky */}
+      <div
+        className="absolute inset-0 bg-[linear-gradient(180deg,#0B2A3D_0%,#144F63_20%,#2E7E95_40%,#3FA6B8_58%,#E8905A_72%,#E8703A_85%,#6E0D18_100%)]"
+        aria-hidden="true"
+      />
 
-      {/* Far island silhouettes */}
+      {/* Glowing sun low on the horizon */}
+      <motion.div
+        className="absolute right-[18%] top-[30%] h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(255,224,153,0.95)_0%,rgba(233,155,58,0.55)_45%,rgba(233,155,58,0)_75%)] blur-[2px] sm:h-56 sm:w-56"
+        animate={reduce ? undefined : { opacity: [0.6, 0.95, 0.6], scale: [1, 1.08, 1] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        aria-hidden="true"
+      />
+
+      {/* Drifting clouds (CSS animation is already neutralized site-wide under prefers-reduced-motion) */}
+      <div className="absolute left-0 top-[12%] h-10 w-48 animate-drift rounded-full bg-cream/40 blur-2xl" aria-hidden="true" />
+      <div className="absolute left-0 top-[22%] h-8 w-64 animate-drift rounded-full bg-cream/30 blur-2xl [animation-delay:-30s]" aria-hidden="true" />
+      <div className="absolute left-0 top-[36%] h-6 w-40 animate-drift rounded-full bg-cream/25 blur-xl [animation-delay:-45s]" aria-hidden="true" />
+
+      {/* Far island silhouettes (hazy jungle ridge) */}
       <motion.svg
-        style={reduce ? undefined : far}
-        className="absolute bottom-0 left-0 w-full text-charcoal"
+        style={far}
+        className="absolute bottom-0 left-0 w-full"
         viewBox="0 0 1440 200"
         preserveAspectRatio="none"
         aria-hidden="true"
       >
-        <path d="M0,200 L0,150 Q180,90 340,140 T680,120 Q860,80 1040,130 T1440,110 L1440,200 Z" fill="currentColor" opacity="0.8" />
+        <path d="M0,200 L0,150 Q180,90 340,140 T680,120 Q860,80 1040,130 T1440,110 L1440,200 Z" fill="#1F4B4A" opacity="0.75" />
       </motion.svg>
 
       {/* Near island + waves */}
-      <motion.div style={reduce ? undefined : near} className="absolute inset-x-0 bottom-0" aria-hidden="true">
-        <svg className="w-full text-ash" viewBox="0 0 1440 160" preserveAspectRatio="none">
-          <path d="M0,160 L0,120 Q240,60 480,110 T960,95 Q1200,60 1440,100 L1440,160 Z" fill="currentColor" />
+      <motion.div style={near} className="absolute inset-x-0 bottom-0" aria-hidden="true">
+        <svg className="w-full" viewBox="0 0 1440 160" preserveAspectRatio="none">
+          <path d="M0,160 L0,120 Q240,60 480,110 T960,95 Q1200,60 1440,100 L1440,160 Z" fill="#2F6B4F" />
         </svg>
-        <div className="relative -mt-1 h-16 overflow-hidden">
-          <svg className="absolute inset-x-0 top-0 w-[110%] animate-wave text-wine/50" viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <div className="relative -mt-1 h-20 overflow-hidden">
+          <svg className="absolute inset-x-0 top-0 w-[110%] animate-wave text-[#1B6B7A]" viewBox="0 0 1440 60" preserveAspectRatio="none">
             <path d="M0,30 Q120,10 240,30 T480,30 T720,30 T960,30 T1200,30 T1440,30 L1440,60 L0,60 Z" fill="currentColor" />
           </svg>
-          <svg className="absolute inset-x-0 top-3 w-[110%] animate-wave text-ocean/25 [animation-delay:-4s]" viewBox="0 0 1440 60" preserveAspectRatio="none">
+          <svg className="absolute inset-x-0 top-3 w-[110%] animate-wave text-[#3FA6B8]/80 [animation-delay:-4s]" viewBox="0 0 1440 60" preserveAspectRatio="none">
             <path d="M0,30 Q120,50 240,30 T480,30 T720,30 T960,30 T1200,30 T1440,30 L1440,60 L0,60 Z" fill="currentColor" />
+          </svg>
+          <svg className="absolute inset-x-0 top-6 w-[110%] animate-wave text-cream/50 [animation-delay:-2s]" viewBox="0 0 1440 60" preserveAspectRatio="none">
+            <path d="M0,30 Q120,20 240,30 T480,30 T720,30 T960,30 T1200,30 T1440,30 L1440,60 L0,60 Z" fill="currentColor" />
           </svg>
         </div>
       </motion.div>
 
       {/* Palms (sway) */}
-      <svg className="absolute -left-6 bottom-0 h-56 w-40 origin-bottom animate-sway text-night sm:h-72" viewBox="0 0 100 180" aria-hidden="true">
-        <path d="M50,180 C48,120 46,80 52,40" stroke="#111111" strokeWidth="6" fill="none" />
-        <g fill="#0d0d0d">
+      <svg className="absolute -left-6 bottom-0 h-56 w-40 origin-bottom animate-sway text-[#3E2A1B] sm:h-72" viewBox="0 0 100 180" aria-hidden="true">
+        <path d="M50,180 C48,120 46,80 52,40" stroke="currentColor" strokeWidth="6" fill="none" />
+        <g fill="#2F6B4F">
           <path d="M52,42 C30,20 12,18 2,26 C20,30 36,38 52,46 Z" />
-          <path d="M52,42 C74,20 92,18 100,28 C82,30 66,38 52,46 Z" />
-          <path d="M52,40 C46,14 34,4 20,4 C34,14 44,28 52,44 Z" />
-          <path d="M52,40 C58,14 70,4 84,6 C70,14 60,28 52,44 Z" />
+          <path d="M52,42 C74,20 92,18 100,28 C82,30 66,38 52,46 Z" opacity="0.9" />
+          <path d="M52,40 C46,14 34,4 20,4 C34,14 44,28 52,44 Z" fill="#3F8563" />
+          <path d="M52,40 C58,14 70,4 84,6 C70,14 60,28 52,44 Z" fill="#3F8563" />
+        </g>
+      </svg>
+      <svg className="absolute -right-4 bottom-0 h-40 w-32 origin-bottom animate-sway text-[#3E2A1B] opacity-90 [animation-delay:-3s] sm:h-52" viewBox="0 0 100 180" aria-hidden="true">
+        <path d="M50,180 C52,130 54,95 48,50" stroke="currentColor" strokeWidth="5" fill="none" />
+        <g fill="#2F6B4F">
+          <path d="M48,52 C28,32 12,30 4,36 C22,40 36,46 48,54 Z" />
+          <path d="M48,52 C68,32 84,30 92,38 C74,40 60,46 48,54 Z" opacity="0.9" />
+          <path d="M48,50 C42,26 32,18 20,18 C32,26 40,38 48,52 Z" fill="#3F8563" />
         </g>
       </svg>
 
       {/* Flight path + plane */}
       <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-        <path id="heroFlight" d="M-5,70 C 25,40 55,20 105,12" fill="none" stroke="#C99A3D" strokeWidth="0.25" strokeDasharray="1 1.6" opacity="0.55" />
+        <path id="heroFlight" d="M-5,70 C 25,40 55,20 105,12" fill="none" stroke="#F7F3EE" strokeWidth="0.25" strokeDasharray="1 1.6" opacity="0.65" />
       </svg>
-      {!reduce && (
-        <motion.div
-          className="absolute left-0 top-0"
-          initial={{ offsetDistance: "0%" }}
-          animate={{ offsetDistance: "100%" }}
-          transition={{ duration: 26, repeat: Infinity, ease: "linear" }}
-          style={{ offsetPath: "path('M -60 480 C 300 280, 700 140, 2100 60')" }}
-          aria-hidden="true"
-        >
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="#F7F3EE" className="drop-shadow-[0_0_8px_rgba(215,38,56,0.7)]">
-            <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
-          </svg>
-        </motion.div>
-      )}
+      <motion.div
+        className="absolute left-0 top-0"
+        initial={{ offsetDistance: "0%" }}
+        animate={{ offsetDistance: reduce ? "35%" : "100%" }}
+        transition={reduce ? { duration: 0 } : { duration: 26, repeat: Infinity, ease: "linear" }}
+        style={{ offsetPath: "path('M -60 480 C 300 280, 700 140, 2100 60')" }}
+        aria-hidden="true"
+      >
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="#F7F3EE" className="drop-shadow-[0_0_8px_rgba(233,155,58,0.85)]">
+          <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
+        </svg>
+      </motion.div>
 
       {/* Destination labels */}
       {labels.map((l, i) => (
         <motion.span
           key={l.name}
-          initial={reduce ? false : { opacity: 0 }}
+          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1 + i * 0.25 }}
-          className="absolute hidden items-center gap-1 text-[11px] uppercase tracking-widest text-sand/60 md:flex"
+          transition={{ delay: reduce ? 0 : 1 + i * 0.25 }}
+          className="absolute hidden items-center gap-1 text-[11px] uppercase tracking-widest text-cream/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)] md:flex"
           style={{ left: l.x, top: l.y }}
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-ember animate-pulse-pin" /> {l.name}
+          <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse-pin" /> {l.name}
         </motion.span>
       ))}
+
+      {/* Readability scrim: dark behind the copy, fading out toward the scenery */}
+      <div
+        className="absolute inset-0 bg-[linear-gradient(100deg,rgba(5,5,5,0.78)_0%,rgba(5,5,5,0.55)_28%,rgba(5,5,5,0.2)_52%,rgba(5,5,5,0)_72%)]"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(0deg,rgba(5,5,5,0.55)_0%,rgba(5,5,5,0)_100%)]"
+        aria-hidden="true"
+      />
 
       {/* Content */}
       <div className="container-site relative z-10 py-24">
         <motion.p
-          initial={reduce ? false : { opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: reduce ? 0 : 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="eyebrow"
         >
           Travel Far. Live Fully. Remember Everything.
         </motion.p>
         <motion.h1
-          initial={reduce ? false : { opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: reduce ? 0 : 0.8, delay: reduce ? 0 : 0.12, ease: [0.16, 1, 0.3, 1] }}
           className="h-display mt-3 max-w-3xl text-5xl font-bold leading-[1.05] sm:text-6xl lg:text-7xl"
         >
           A Life Measured in <span className="text-ember">Journeys</span>
         </motion.h1>
         <motion.p
-          initial={reduce ? false : { opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: reduce ? 0 : 0.8, delay: reduce ? 0 : 0.24, ease: [0.16, 1, 0.3, 1] }}
           className="mt-6 max-w-2xl text-lg leading-relaxed text-cream/75"
         >
           I&apos;m Adam Belda—a traveller, storyteller, technology professional, gamer, and
@@ -167,9 +195,9 @@ export default function Hero() {
           unforgettable.
         </motion.p>
         <motion.div
-          initial={reduce ? false : { opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.36, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: reduce ? 0 : 0.8, delay: reduce ? 0 : 0.36, ease: [0.16, 1, 0.3, 1] }}
           className="mt-9 flex flex-wrap gap-4"
         >
           <Link href="/travel-stories" className="btn-primary">
@@ -183,7 +211,7 @@ export default function Hero() {
 
       {/* Scroll indicator — location pin */}
       <motion.div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-sand/70"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-cream/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]"
         animate={reduce ? undefined : { y: [0, 8, 0] }}
         transition={{ duration: 1.8, repeat: Infinity }}
         aria-hidden="true"
@@ -193,8 +221,8 @@ export default function Hero() {
 
       {/* Cursor-following tropical leaves */}
       <motion.svg
-        style={reduce ? undefined : leaves}
-        className="pointer-events-none absolute -right-8 top-10 h-48 w-48 text-wine/25 sm:h-64 sm:w-64"
+        style={leaves}
+        className="pointer-events-none absolute -right-8 top-10 h-48 w-48 text-jungle/40 sm:h-64 sm:w-64"
         viewBox="0 0 100 100"
         aria-hidden="true"
       >
