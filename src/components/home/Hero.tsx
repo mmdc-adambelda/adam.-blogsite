@@ -41,7 +41,7 @@ export default function Hero() {
           {/* Overlapping photo */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-1/2 z-10 aspect-[1080/1920] h-[80%] w-auto -translate-x-1/2 -translate-y-1/2"
+            className="pointer-events-none absolute left-1/2 top-1/2 z-10 aspect-[1080/1920] h-full w-auto -translate-x-1/2 -translate-y-1/2"
           >
             <Image
               src="/images/home/adam-transparent.png"
