@@ -1,4 +1,9 @@
-/** Destinations for the interactive map (abstract, custom-drawn map — not a real map tile service). */
+/**
+ * Destinations for the interactive map. x/y are real geographic positions —
+ * a Mercator projection of each place's actual lat/lng, fit to the same
+ * 0-100 x 0-80 viewBox as the coastline paths in TravelMap.tsx (see
+ * scripts note in that file for how to regenerate both together).
+ */
 export interface Destination {
   id: string;
   name: string;
@@ -8,7 +13,6 @@ export interface Destination {
   articleSlug: string;
   articleBase: "travel-stories" | "gaming-journeys";
   thumbnail: { src: string; alt: string };
-  /** Position on the abstract map, percentage coordinates */
   x: number;
   y: number;
 }
@@ -27,8 +31,8 @@ export const destinations: Destination[] = [
       src: "/images/blog/davao-2016/davao-city-arrival-placeholder.webp",
       alt: "Davao City street scene",
     },
-    x: 72,
-    y: 62,
+    x: 86.84,
+    y: 68.59,
   },
   {
     id: "samal",
@@ -42,8 +46,8 @@ export const destinations: Destination[] = [
       src: "/images/blog/davao-2016/samal-island-beach-placeholder.webp",
       alt: "Samal Island beach",
     },
-    x: 75,
-    y: 65,
+    x: 87.69,
+    y: 68.9,
   },
   {
     id: "boracay",
@@ -57,8 +61,8 @@ export const destinations: Destination[] = [
       src: "/images/blog/boracay-2024/boracay-sunset-placeholder.webp",
       alt: "Boracay sunset",
     },
-    x: 66,
-    y: 52,
+    x: 74.96,
+    y: 52.3,
   },
   {
     id: "macau",
@@ -72,8 +76,8 @@ export const destinations: Destination[] = [
       src: "/images/blog/macau-hongkong-2025/macau-skyline-placeholder.webp",
       alt: "Macau skyline",
     },
-    x: 58,
-    y: 34,
+    x: 46.79,
+    y: 16.25,
   },
   {
     id: "hongkong",
@@ -87,8 +91,8 @@ export const destinations: Destination[] = [
       src: "/images/blog/macau-hongkong-2025/hongkong-city-placeholder.webp",
       alt: "Hong Kong cityscape",
     },
-    x: 62,
-    y: 32,
+    x: 48.89,
+    y: 15.81,
   },
   {
     id: "hochiminh",
@@ -102,8 +106,8 @@ export const destinations: Destination[] = [
       src: "/images/blog/ho-chi-minh-2026/district-1-street-placeholder.webp",
       alt: "District 1 street, Ho Chi Minh City",
     },
-    x: 45,
-    y: 48,
+    x: 23.54,
+    y: 56.22,
   },
 ];
 
