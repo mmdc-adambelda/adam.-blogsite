@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, MotionConfig } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export interface ArcGalleryImage {
@@ -52,8 +52,6 @@ export default function ArcGalleryHero({
   secondaryCta,
   className,
 }: ArcGalleryHeroProps) {
-  const reducedMotionPref = useReducedMotion();
-  const reduce = reducedMotionPref ?? false;
   const total = images.length;
 
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -78,81 +76,83 @@ export default function ArcGalleryHero({
   const arcHeight = radius + tileSize / 2 + 24;
 
   return (
-    <section className={cn("relative overflow-hidden pb-16 pt-16 sm:pt-20", className)} aria-label="Photo journal introduction">
-      <div ref={containerRef} className="relative mx-auto" style={{ height: arcHeight, maxWidth: DEFAULT_WIDTH }}>
-        {images.map((image, i) => {
-          const { x, y, rotate } = arcTransform(i, total, radius);
-          // Tiles fly in from scattered, rotated positions and settle into the arc
-          // (outer layer, plays once). Once settled, each keeps gently floating up
-          // and down forever (inner layer, its own independent loop) so the arc
-          // reads as continuously, organically alive rather than a static image.
-          const flyFromX = x + (i % 2 === 0 ? -70 : 70);
-          const flyFromY = y + 140;
-          const flyFromRotate = rotate + (i % 2 === 0 ? -35 : 35);
-          const entranceDuration = 0.7;
-          const entranceDelay = 0.05 * i;
-          const floatDuration = 2.6 + (i % 5) * 0.35;
-          return (
-            <motion.div
-              key={image.src + i}
-              className="absolute"
-              style={{
-                width: tileSize,
-                height: tileSize,
-                left: "50%",
-                bottom: 0,
-                marginLeft: -tileSize / 2,
-              }}
-              initial={{ opacity: 0, scale: 0.4, x: flyFromX, y: flyFromY, rotate: flyFromRotate }}
-              animate={{ opacity: 1, scale: 1, x, y, rotate }}
-              transition={{
-                duration: reduce ? 0 : entranceDuration,
-                delay: reduce ? 0 : entranceDelay,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-            >
-              {/* Independent continuous float loop, layered on top of the settled position above.
-                  `initial`/`animate` keep the same shape regardless of `reduce` (only the
-                  transition timing changes) — varying the shape itself would mismatch between
-                  SSR and the client's first paint, since prefers-reduced-motion isn't knowable
-                  on the server. */}
+    // reducedMotion="never" overrides Framer Motion's own default of silently turning
+    // every transform animation into an instant snap when the OS reports a reduced-motion
+    // preference — otherwise this component can never animate on a machine with, e.g.,
+    // Windows' "Animation effects" turned off, no matter what this component's own code does.
+    <MotionConfig reducedMotion="never">
+      <section className={cn("relative overflow-hidden pb-16 pt-16 sm:pt-20", className)} aria-label="Photo journal introduction">
+        <div ref={containerRef} className="relative mx-auto" style={{ height: arcHeight, maxWidth: DEFAULT_WIDTH }}>
+          {images.map((image, i) => {
+            const { x, y, rotate } = arcTransform(i, total, radius);
+            // Tiles fly in from scattered, rotated positions and settle into the arc
+            // (outer layer, plays once). Once settled, each keeps gently floating up
+            // and down forever (inner layer, its own independent loop) so the arc
+            // reads as continuously, organically alive rather than a static image.
+            const flyFromX = x + (i % 2 === 0 ? -70 : 70);
+            const flyFromY = y + 140;
+            const flyFromRotate = rotate + (i % 2 === 0 ? -35 : 35);
+            const entranceDuration = 0.7;
+            const entranceDelay = 0.05 * i;
+            const floatDuration = 2.6 + (i % 5) * 0.35;
+            return (
               <motion.div
-                className="h-full w-full overflow-hidden rounded-2xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.45)]"
-                animate={{ y: [0, -8, 0] }}
-                transition={{
-                  duration: reduce ? 0 : floatDuration,
-                  delay: reduce ? 0 : entranceDuration + entranceDelay,
-                  repeat: reduce ? 0 : Infinity,
-                  ease: "easeInOut",
+                key={image.src + i}
+                className="absolute"
+                style={{
+                  width: tileSize,
+                  height: tileSize,
+                  left: "50%",
+                  bottom: 0,
+                  marginLeft: -tileSize / 2,
                 }}
-                whileHover={reduce ? undefined : { scale: 1.1, zIndex: 20 }}
+                initial={{ opacity: 0, scale: 0.4, x: flyFromX, y: flyFromY, rotate: flyFromRotate }}
+                animate={{ opacity: 1, scale: 1, x, y, rotate }}
+                transition={{ duration: entranceDuration, delay: entranceDelay, ease: [0.16, 1, 0.3, 1] }}
               >
-                <Image src={image.src} alt={image.alt} fill sizes="120px" className="object-cover" />
+                {/* Independent continuous float loop, layered on top of the settled position above.
+                    Deliberately not gated behind prefers-reduced-motion: this motion is a few
+                    pixels of drift, not the kind of large/vestibular-risk animation that
+                    preference is meant to suppress, and gating it made the whole gallery look
+                    permanently frozen for anyone with "Animation effects" off in Windows. */}
+                <motion.div
+                  className="h-full w-full overflow-hidden rounded-2xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.45)]"
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{
+                    duration: floatDuration,
+                    delay: entranceDuration + entranceDelay,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  whileHover={{ scale: 1.1, zIndex: 20 }}
+                >
+                  <Image src={image.src} alt={image.alt} fill sizes="120px" className="object-cover" />
+                </motion.div>
               </motion.div>
-            </motion.div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
 
-      <div className="container-site relative z-10 mt-8 text-center">
-        <h1 className="h-display mx-auto max-w-3xl text-4xl font-bold leading-[1.1] sm:text-5xl lg:text-6xl">
-          {heading}
-        </h1>
-        {(primaryCta || secondaryCta) && (
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            {primaryCta && (
-              <Link href={primaryCta.href} className="btn-primary">
-                {primaryCta.label}
-              </Link>
-            )}
-            {secondaryCta && (
-              <Link href={secondaryCta.href} className="btn-secondary">
-                {secondaryCta.label}
-              </Link>
-            )}
-          </div>
-        )}
-      </div>
-    </section>
+        <div className="container-site relative z-10 mt-8 text-center">
+          <h1 className="h-display mx-auto max-w-3xl text-4xl font-bold leading-[1.1] sm:text-5xl lg:text-6xl">
+            {heading}
+          </h1>
+          {(primaryCta || secondaryCta) && (
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              {primaryCta && (
+                <Link href={primaryCta.href} className="btn-primary">
+                  {primaryCta.label}
+                </Link>
+              )}
+              {secondaryCta && (
+                <Link href={secondaryCta.href} className="btn-secondary">
+                  {secondaryCta.label}
+                </Link>
+              )}
+            </div>
+          )}
+        </div>
+      </section>
+    </MotionConfig>
   );
 }
