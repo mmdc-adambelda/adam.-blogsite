@@ -1,6 +1,10 @@
+import fs from "node:fs";
+import path from "node:path";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
+import { journalPhotos } from "@/data/journeys";
 import PhotoJournal from "@/components/PhotoJournal";
+import ArcGalleryHero from "@/components/ui/arc-gallery-hero";
 
 export const metadata: Metadata = pageMetadata({
   title: "Photo Journal — Frames From Every Journey | Adam Belda",
@@ -9,16 +13,22 @@ export const metadata: Metadata = pageMetadata({
   path: "/photo-journal",
 });
 
+// Only feed the arc gallery photos that actually exist on disk (some journal
+// entries are still awaiting their real image).
+const arcImages = journalPhotos
+  .filter((p) => fs.existsSync(path.join(process.cwd(), "public", p.src)))
+  .map((p) => ({ src: p.src, alt: p.alt }));
+
 export default function PhotoJournalPage() {
   return (
-    <div className="container-site py-16">
-      <p className="eyebrow">Collected frames</p>
-      <h1 className="h-display mt-1 text-4xl font-bold sm:text-5xl">Photo Journal</h1>
-      <p className="mt-3 max-w-2xl text-cream/65">
-        Moments I managed to catch before they moved on. Filter by destination, and open any
-        photo for the full view — arrow keys and swipe both work.
-      </p>
-      <div className="mt-10">
+    <div>
+      <ArcGalleryHero
+        images={arcImages}
+        heading="Rediscover My Travels Yearly"
+        primaryCta={{ label: "View the Gallery", href: "#gallery" }}
+        secondaryCta={{ label: "Read the Stories", href: "/travel-stories" }}
+      />
+      <div id="gallery" className="container-site pb-16 pt-4">
         <PhotoJournal />
       </div>
     </div>
