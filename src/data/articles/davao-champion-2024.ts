@@ -4,7 +4,7 @@ export const davaoChampion2024: Article = {
   title:
     "Returning to Davao: From Travel Memories to Becoming a Grand Chase Classic Champion",
   seoTitle:
-    "Grand Chase Classic Davao Regional Championship 2024: How I Won | Adam Belda",
+    "Grand Chase Classic Davao Regional Championship 2024: How I Won",
   metaDescription:
     "In 2024 I returned to Davao — not as a tourist, but to compete in the Grand Chase Classic Davao Regional Championship by PlayPark. This is the story of winning it.",
   slug: "davao-grand-chase-classic-champion-2024",

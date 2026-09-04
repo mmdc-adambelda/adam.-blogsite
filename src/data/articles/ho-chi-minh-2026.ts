@@ -3,7 +3,7 @@ import type { Article } from "./types";
 export const hoChiMinh2026: Article = {
   title: "Ten Days in Ho Chi Minh City: An Affordable Adventure With My Little Brother",
   seoTitle:
-    "Ho Chi Minh City Budget Travel: 10 Days in Vietnam With My Brother | Adam Belda",
+    "Ho Chi Minh City Budget Travel: 10 Days in Vietnam With My Brother",
   metaDescription:
     "Ten days in Ho Chi Minh City in January 2026 with my little brother — cheap GrabCars, incredible coffee, street food, a District 1 cat café, and why Vietnam is perfect for budget travellers.",
   slug: "ho-chi-minh-city-vietnam-10-day-trip",

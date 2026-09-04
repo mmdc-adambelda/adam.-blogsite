@@ -4,7 +4,7 @@ import ArticleCard from "@/components/ArticleCard";
 import { getArticlesByBase } from "@/lib/articles";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Gaming Journeys — Where Travel Meets Play | Adam Belda",
+  title: "Gaming Journeys — Where Travel Meets Play",
   description:
     "Gaming-related travel stories from Adam Belda, including winning the Grand Chase Classic Davao Regional Championship by PlayPark in 2024.",
   path: "/gaming-journeys",

@@ -3,7 +3,7 @@ import type { Article } from "./types";
 export const macauHongKong2025: Article = {
   title: "Macau and Hong Kong: The Birthday Journey We Continued for Dad",
   seoTitle:
-    "Macau and Hong Kong Travel Story: A Family Journey We Continued for Dad | Adam Belda",
+    "Macau and Hong Kong Travel Story: A Family Journey We Continued for Dad",
   metaDescription:
     "We planned Macau and Hong Kong as a birthday gift for my father. He passed away a month before the flight. In September 2025, we travelled anyway — for him.",
   slug: "macau-hong-kong-journey-for-dad",

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Terms of Use | Adam Belda",
+  title: "Terms of Use",
   description: "The terms for using adambelda.com — content ownership, acceptable use, and disclaimers.",
   path: "/terms-of-use",
 });

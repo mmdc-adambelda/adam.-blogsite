@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 import SearchClient from "./SearchClient";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Search — Find Any Story | Adam Belda",
+  title: "Search — Find Any Story",
   description: "Search Adam Belda's travel stories, destinations, food discoveries, and gaming journeys.",
   path: "/search",
 });

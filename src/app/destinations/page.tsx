@@ -8,7 +8,7 @@ import ImagePlaceholder from "@/components/ImagePlaceholder";
 import Reveal from "@/components/ui/Reveal";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Destinations — Everywhere My Journeys Have Taken Me | Adam Belda",
+  title: "Destinations — Everywhere My Journeys Have Taken Me",
   description:
     "Explore Adam Belda's destinations: Davao City, Samal Island, Boracay, Macau, Hong Kong, and Ho Chi Minh City — each with its own story.",
   path: "/destinations",

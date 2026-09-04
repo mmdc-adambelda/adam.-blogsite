@@ -13,7 +13,7 @@ import {
 } from "@/lib/articles";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Travel Stories — Journeys, Food & Family | Adam Belda",
+  title: "Travel Stories — Journeys, Food & Family",
   description:
     "All of Adam Belda's travel stories: Davao, Samal Island, Boracay, Macau, Hong Kong, and Ho Chi Minh City — searchable and filterable by destination, category, year, and tag.",
   path: "/travel-stories",

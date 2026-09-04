@@ -6,7 +6,7 @@ import { articles } from "@/lib/articles";
 import Reveal from "@/components/ui/Reveal";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Food and Culture — Taste Memories From Every Journey | Adam Belda",
+  title: "Food and Culture — Taste Memories From Every Journey",
   description:
     "From pastil and tablea in Davao to hotpot in Hong Kong and Vietnamese coffee in Ho Chi Minh City — the food and culture that made Adam Belda's journeys unforgettable.",
   path: "/food-and-culture",

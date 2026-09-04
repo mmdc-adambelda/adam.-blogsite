@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Privacy Policy | Adam Belda",
+  title: "Privacy Policy",
   description: "How adambelda.com handles your information: newsletter emails, contact form details, and analytics.",
   path: "/privacy-policy",
 });

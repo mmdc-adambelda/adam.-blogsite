@@ -7,7 +7,7 @@ import PhotoJournal from "@/components/PhotoJournal";
 import ArcGalleryHero from "@/components/ui/arc-gallery-hero";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Photo Journal — Frames From Every Journey | Adam Belda",
+  title: "Photo Journal — Frames From Every Journey",
   description:
     "A visual journal of Adam Belda's travels — Davao, Samal, Boracay, Macau, Hong Kong, and Ho Chi Minh City in photographs.",
   path: "/photo-journal",

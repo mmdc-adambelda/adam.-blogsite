@@ -4,7 +4,7 @@ import ArticleCard from "@/components/ArticleCard";
 import { articles } from "@/lib/articles";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Lifestyle — Reflections, Family & Everything Between Trips | Adam Belda",
+  title: "Lifestyle — Reflections, Family & Everything Between Trips",
   description:
     "Lifestyle writing from Adam Belda: family experiences, personal reflections, budget travel thinking, and the life that happens between journeys.",
   path: "/lifestyle",
