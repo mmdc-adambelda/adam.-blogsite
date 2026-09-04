@@ -50,9 +50,9 @@ export const littleAsiaCavite2026: Article = {
       ],
       image: {
         src: "/images/blog/cavite-2026/little-asia-owner-placeholder.webp",
-        alt: "Adam with the team behind Little Asia's kitchen in General Trias, Cavite",
+        alt: "Adam with the owner of Little Asia in General Trias, Cavite",
         dimensions: "1200x1600",
-        caption: "Adam with the team behind Little Asia's kitchen.",
+        caption: "Adam with the owner of Little Asia.",
       },
     },
     {
@@ -100,9 +100,9 @@ export const littleAsiaCavite2026: Article = {
       ],
       image: {
         src: "/images/blog/cavite-2026/little-asia-starters-placeholder.webp",
-        alt: "Starters at Little Asia, including a generously sized samosa",
+        alt: "Starters at Little Asia in General Trias, Cavite",
         dimensions: "1600x1512",
-        caption: "The starters at Little Asia, including a generously sized samosa.",
+        caption: "The starters at Little Asia.",
       },
     },
     {
@@ -123,9 +123,9 @@ export const littleAsiaCavite2026: Article = {
       ],
       image: {
         src: "/images/blog/cavite-2026/little-asia-outdoor-seating-placeholder.webp",
-        alt: "Outdoor seating area at Little Asia in General Trias, Cavite",
+        alt: "Little Asia's outdoor banner in General Trias, Cavite",
         dimensions: "1200x1600",
-        caption: "Little Asia's outdoor seating in General Trias, Cavite.",
+        caption: "Little Asia's outdoor banner in General Trias, Cavite.",
       },
     },
     {
@@ -136,9 +136,9 @@ export const littleAsiaCavite2026: Article = {
       ],
       image: {
         src: "/images/blog/cavite-2026/little-asia-pani-puri-placeholder.webp",
-        alt: "A plate of dishes on the table at Little Asia in General Trias, Cavite",
+        alt: "Pani Puri at Little Asia in General Trias, Cavite",
         dimensions: "1200x1600",
-        caption: "More from the table at Little Asia.",
+        caption: "The Pani Puri at Little Asia.",
       },
     },
     {
