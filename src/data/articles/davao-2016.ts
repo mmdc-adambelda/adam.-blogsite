@@ -4,7 +4,7 @@ export const davao2016: Article = {
   title:
     "My First Davao Adventure: Samal Island, Pastil, Tablea, and My First Taste of Durian",
   seoTitle:
-    "Davao Travel Story 2016: Samal Island Hopping, Pastil, Tablea & My First Durian | Adam Belda",
+    "Davao Travel Story 2016: Samal Island Hopping, Pastil, Tablea & My First Durian",
   metaDescription:
     "My first Davao trip in 2016 — island hopping around Samal Island, trying pastil and tablea, and my honest first taste of durian and durian halo-halo.",
   slug: "davao-samal-island-trip-2016",
@@ -117,5 +117,9 @@ export const davao2016: Article = {
         "The smell is strong and polarizing — there's no way around that. But the taste is much gentler than the aroma suggests, and frozen or blended versions are an easy entry point.",
     },
   ],
-  related: ["davao-grand-chase-classic-champion-2024", "boracay-family-birthday-trip-2024"],
+  related: [
+    "davao-grand-chase-classic-champion-2024",
+    "boracay-family-birthday-trip-2024",
+    "little-asia-in-cavite",
+  ],
 };

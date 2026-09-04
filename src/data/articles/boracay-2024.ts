@@ -3,7 +3,7 @@ import type { Article } from "./types";
 export const boracay2024: Article = {
   title: "Four Days in Boracay: Celebrating My Mom's Birthday With the Whole Family",
   seoTitle:
-    "Boracay Family Trip November 2024: Mom's Birthday at The Piccolo Hotel, Station 2 | Adam Belda",
+    "Boracay Family Trip November 2024: Mom's Birthday at The Piccolo Hotel, Station 2",
   metaDescription:
     "Four days and three nights in Boracay in November 2024 celebrating my mom's birthday with the whole family — staying at The Piccolo Hotel in Station 2.",
   slug: "boracay-family-birthday-trip-2024",
@@ -101,5 +101,9 @@ export const boracay2024: Article = {
         "Completely. The combination of an iconic beach, easy logistics in Station 2, and nightly sunsets makes it ideal for milestone celebrations like birthdays.",
     },
   ],
-  related: ["macau-hong-kong-journey-for-dad", "davao-samal-island-trip-2016"],
+  related: [
+    "macau-hong-kong-journey-for-dad",
+    "davao-samal-island-trip-2016",
+    "little-asia-in-cavite",
+  ],
 };

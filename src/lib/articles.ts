@@ -3,12 +3,14 @@ import { davaoChampion2024 } from "@/data/articles/davao-champion-2024";
 import { macauHongKong2025 } from "@/data/articles/macau-hongkong-2025";
 import { hoChiMinh2026 } from "@/data/articles/ho-chi-minh-2026";
 import { boracay2024 } from "@/data/articles/boracay-2024";
+import { littleAsiaCavite2026 } from "@/data/articles/little-asia-cavite-2026";
 import type { Article } from "@/data/articles/types";
 export { articleUrl } from "@/data/articles/types";
 export type { Article, Category } from "@/data/articles/types";
 
 /** All articles, newest travel first. Add new articles to this list. */
 export const articles: Article[] = [
+  littleAsiaCavite2026,
   hoChiMinh2026,
   macauHongKong2025,
   boracay2024,
