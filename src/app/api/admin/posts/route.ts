@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { createPost, getAllPostsAdmin, isSlugTaken, type PostInput } from "@/lib/posts";
 import { slugify } from "@/lib/slug";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const posts = await getAllPostsAdmin();
   return NextResponse.json({ posts });
