@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Plus } from "lucide-react";
+import { ExternalLink, Plus } from "lucide-react";
 import { getAllPostsAdmin } from "@/lib/posts";
 import LogoutButton from "./LogoutButton";
 import DeletePostButton from "./DeletePostButton";
@@ -54,6 +54,17 @@ export default async function AdminDashboard() {
                   <p className="mt-1 truncate text-xs text-cream/40">/blog/{post.slug}</p>
                 </div>
                 <div className="flex shrink-0 items-center gap-1">
+                  {post.status === "published" && (
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View ${post.title} live`}
+                      className="flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-sm text-cream/70 transition-colors hover:bg-white/[0.06] hover:text-cream"
+                    >
+                      View <ExternalLink size={14} />
+                    </Link>
+                  )}
                   <Link
                     href={`/admin/posts/${post.id}/edit`}
                     className="cursor-pointer rounded-full px-3 py-1.5 text-sm text-cream/70 transition-colors hover:bg-white/[0.06] hover:text-cream"
