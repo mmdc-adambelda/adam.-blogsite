@@ -93,11 +93,71 @@ your provider (MailerLite, Mailchimp, Resend, Formspree, or a Next.js route hand
 
 ---
 
+## Blog admin (login + post editor)
+
+A password-protected `/admin` area lets you write and publish blog posts (stored in
+Postgres, shown at `/blog`) without touching code, with a Yoast-style live SEO panel
+(focus keyphrase, title/description length, keyphrase placement, content length).
+
+### One-time setup
+
+1. **Create a free Postgres database** at [neon.tech](https://neon.tech) → New Project →
+   copy the **pooled connection string**.
+2. **Fill in `.env.local`** (already gitignored, never commit it):
+   ```
+   DATABASE_URL=<your Neon pooled connection string>
+   ADMIN_USERNAME=argbelda
+   ADMIN_PASSWORD_HASH=<already generated — see below>
+   SESSION_SECRET=<already generated — see below>
+   ```
+   The password hash and session secret were generated once for this project and are
+   already in `.env.local`. To rotate the password later:
+   ```bash
+   node -e "const b=require('bcryptjs'); console.log(b.hashSync('new-password', 12))"
+   ```
+   **Note:** Next.js expands `$VAR` references in `.env` files, so every `$` in the
+   bcrypt hash must be escaped as `\$` (e.g. `\$2b\$12\$...`) or the value gets corrupted.
+3. **Create the `posts` table**:
+   ```bash
+   node scripts/migrate.mjs
+   ```
+4. **Set the same three variables in Vercel** → Project → Settings → Environment
+   Variables (paste the hash and secret exactly as they appear in `.env.local`,
+   backslashes included) → redeploy.
+
+### Using it
+
+- Log in at `/admin/login` with the username/password above.
+- `/admin` lists all posts (draft + published) with edit/delete.
+- The editor sets: title, slug, excerpt, Markdown content, cover image URL, category,
+  tags, and SEO fields (SEO title, meta description, focus keyphrase) — the sidebar
+  scores the post live, the same idea as the Yoast SEO plugin.
+- Published posts appear at `/blog` and `/blog/<slug>` within about a minute (ISR).
+- `/admin` and the admin API are blocked in `robots.txt` and return a 401/redirect to
+  anyone without a valid session cookie (enforced in `src/middleware.ts`).
+
+### Where the code lives
+
+```
+src/lib/db.ts            # Neon Postgres client
+src/lib/auth.ts           # session cookie signing/verification (JWT)
+src/lib/posts.ts          # post CRUD queries
+src/lib/seoAnalysis.ts    # Yoast-style SEO checks
+src/middleware.ts         # gates /admin and /api/admin
+src/app/api/admin/        # login, logout, posts CRUD routes
+src/app/admin/            # login page, dashboard, post editor
+src/app/blog/             # public blog listing + post pages
+scripts/migrate.mjs       # creates the posts table
+```
+
 ## Deployment (Vercel)
 
 1. Push this folder to a GitHub repository.
 2. In [vercel.com](https://vercel.com), **Add New Project** → import the repo.
-3. Framework preset: **Next.js** (auto-detected). No env vars required. Deploy.
+3. Framework preset: **Next.js** (auto-detected).
+4. Add the `DATABASE_URL`, `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`, `SESSION_SECRET`
+   environment variables from `.env.local` (see **Blog admin** above) if you want the
+   `/admin` blog editor to work in production. Deploy.
 
 ### Connect adambelda.com
 1. Vercel → Project → **Settings → Domains** → add `adambelda.com` and `www.adambelda.com`.

@@ -14,6 +14,7 @@ const nav = [
   { href: "/lifestyle", label: "Lifestyle" },
   { href: "/gaming-journeys", label: "Gaming" },
   { href: "/photo-journal", label: "Photo Journal" },
+  { href: "/blog", label: "Blog" },
   { href: "/about", label: "About Adam" },
   { href: "/contact", label: "Contact" },
 ];

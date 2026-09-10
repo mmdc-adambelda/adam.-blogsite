@@ -2,8 +2,9 @@ import type { MetadataRoute } from "next";
 import { site } from "@/data/site";
 import { articles } from "@/lib/articles";
 import { articleUrl } from "@/data/articles/types";
+import { getPublishedPosts } from "@/lib/posts";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPaths = [
     "",
     "/about",
@@ -13,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/lifestyle",
     "/gaming-journeys",
     "/photo-journal",
+    "/blog",
     "/contact",
     "/search",
     "/privacy-policy",
@@ -31,5 +33,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  return [...staticPaths, ...articlePaths];
+  // DATABASE_URL may be unset in local/preview builds before the DB is provisioned.
+  const posts = process.env.DATABASE_URL ? await getPublishedPosts().catch(() => []) : [];
+  const postPaths = posts.map((p) => ({
+    url: `${site.domain}/blog/${p.slug}`,
+    lastModified: new Date(p.updatedAt),
+    changeFrequency: "yearly" as const,
+    priority: 0.9,
+  }));
+
+  return [...staticPaths, ...articlePaths, ...postPaths];
 }
